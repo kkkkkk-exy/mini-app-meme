@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkkkkk.miniappmeme.mapper.LabelMapper">
+  <resultMap id="BaseResultMap" type="com.kkkkkk.miniappmeme.entity.LabelOfAvatar">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from label_of_avatar
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="java.lang.String">
+    insert into label_of_avatar (value)
+    values (#{value,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.kkkkkk.miniappmeme.entity.LabelOfAvatar">
+    update label_of_avatar
+    set value = #{value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, value
+    from label_of_avatar
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, value
+    from label_of_avatar
+  </select>
+  <select id="selectByValue" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select id, value
+    from label_of_avatar
+    where value = #{vaule, jdbcType=VARCHAR}
+  </select>
+</mapper>

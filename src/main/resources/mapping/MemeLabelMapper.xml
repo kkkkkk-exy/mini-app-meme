@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkkkkk.miniappmeme.mapper.MemeLabelMapper">
+  <resultMap id="BaseResultMap" type="com.kkkkkk.miniappmeme.entity.MemeLabel">
+    <id column="id_meme" jdbcType="BIGINT" property="idMeme" />
+    <id column="id_label" jdbcType="BIGINT" property="idLabel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from meme_label
+    where id_meme = #{idMeme,jdbcType=BIGINT}
+      and id_label = #{idLabel,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kkkkkk.miniappmeme.entity.MemeLabel">
+    insert into meme_label (id_meme, id_label)
+    values (#{idMeme,jdbcType=BIGINT}, #{idLabel,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_meme, id_label
+    from meme_label
+  </select>
+  <select id="selectByLabelId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select id_meme
+    from meme_label
+    where id_label = #{LabelId, jdbcType=BIGINT}
+  </select>
+</mapper>

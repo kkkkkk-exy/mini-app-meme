@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkkkkk.miniappmeme.mapper.SentenceLabelMapper">
+  <resultMap id="BaseResultMap" type="com.kkkkkk.miniappmeme.entity.SentenceLabel">
+    <id column="id_sentence" jdbcType="BIGINT" property="idSentence" />
+    <id column="id_label" jdbcType="BIGINT" property="idLabel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from sentence_label
+    where id_sentence = #{idSentence,jdbcType=BIGINT}
+      and id_label = #{idLabel,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kkkkkk.miniappmeme.entity.SentenceLabel">
+    insert into sentence_label (id_sentence, id_label)
+    values (#{idSentence,jdbcType=BIGINT}, #{idLabel,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_sentence, id_label
+    from sentence_label
+  </select>
+</mapper>

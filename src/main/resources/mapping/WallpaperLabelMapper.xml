@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkkkkk.miniappmeme.mapper.WallpaperLabelMapper">
+  <resultMap id="BaseResultMap" type="com.kkkkkk.miniappmeme.entity.WallpaperLabel">
+    <id column="id_wallpaper" jdbcType="BIGINT" property="idWallpaper" />
+    <id column="id_label" jdbcType="BIGINT" property="idLabel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from wallpaper_label
+    where id_wallpaper = #{idWallpaper,jdbcType=BIGINT}
+      and id_label = #{idLabel,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kkkkkk.miniappmeme.entity.WallpaperLabel">
+    insert into wallpaper_label (id_wallpaper, id_label)
+    values (#{idWallpaper,jdbcType=BIGINT}, #{idLabel,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_wallpaper, id_label
+    from wallpaper_label
+  </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkkkkk.miniappmeme.mapper.MemeMapper">
+  <resultMap id="BaseResultMap" type="com.kkkkkk.miniappmeme.entity.Meme">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="src" jdbcType="VARCHAR" property="src" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="count_download" jdbcType="INTEGER" property="countDownload" />
+    <result column="category" jdbcType="BIGINT" property="category" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from meme
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kkkkkk.miniappmeme.entity.Meme">
+    insert into meme (src, time,
+      count_download, category)
+    values (#{id,jdbcType=BIGINT}, #{src,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{countDownload,jdbcType=INTEGER}, #{category, jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.kkkkkk.miniappmeme.entity.Meme">
+    update meme
+    set src = #{src,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      count_download = #{countDownload,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, src, time, count_download, category
+    from meme
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, src, time, count_download, category
+    from meme
+  </select>
+</mapper>
