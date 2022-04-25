@@ -11,7 +11,7 @@ public interface LabelMapper {
 
     int insert(String value);
 
-    LabelOfAvatar selectByPrimaryKey(Long id);
+    String selectByPrimaryKey(Long id);
 
     List<LabelOfAvatar> selectAll();
 

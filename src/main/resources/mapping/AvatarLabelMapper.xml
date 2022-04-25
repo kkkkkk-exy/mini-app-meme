@@ -23,4 +23,9 @@
     from avatar_label
     where id_label = #{LabelId, jdbcType=BIGINT}
   </select>
+  <select id="selectByAvatarId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select id_label
+    from avatar_label
+    where id_avatar = #{avatarId, jdbcType=BIGINT}
+  </select>
 </mapper>

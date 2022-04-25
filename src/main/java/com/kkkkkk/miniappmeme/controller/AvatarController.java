@@ -52,10 +52,13 @@ public class AvatarController {
         return ResponseUtil.ok(data);
     }
 
-    // @GetMapping("/upload")
-    // public String upload(){
-    //     return "upload";
-    // }
+    @GetMapping("/wechat/avatar/categories")
+    public Object getAllCategory_wechat(){
+        List<CategoryAvatar> categoryAvatars = categoryAvatarService.allCategory();
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("category_list", categoryAvatars);
+        return ResponseUtil.ok(data);
+    }
 
     //上传图片到七牛云
     @PostMapping("/upload")
@@ -124,6 +127,10 @@ public class AvatarController {
             Avatar avatar = new Avatar();
             System.out.println("i=" + i);
             String src = uploadInfo.getImageList()[i];
+            System.out.println("src:" + src);
+            if (src == null){
+                return ResponseUtil.fail();
+            }
             i = i + 1;
             avatar.setSrc(src);
             avatar.setTime(new Date());
@@ -152,14 +159,16 @@ public class AvatarController {
     }
 
     //返回所有头像
-    @GetMapping("/wechat/avatar")
-    public Object allAvatar(){
-        return ResponseUtil.ok(avatarService.allAvatar());
+    @GetMapping("/wechat/avatars/{pageNum}/{pageSize}")
+    public Object allAvatar(@PathVariable(value = "pageNum")Integer pageNum, @PathVariable(value = "pageSize")Integer pageSize){
+        return ResponseUtil.ok(PageUtil.startPage(avatarService.allAvatar(), pageNum, pageSize));
+        //return ResponseUtil.ok(avatarService.allAvatar());
     }
 
     //搜索头像
     @PostMapping("/wechat/search/{pageNum}/{pageSize}")
     public Object searchAvatar(@RequestBody SearchParam param, @PathVariable(value = "pageNum")Integer pageNum, @PathVariable(value = "pageSize")Integer pageSize){
+        System.out.println(param.getKeyword());
         SearchLabelResponse labelResponse = searchAvatarService.searchAvatar(param);
         int lengthLabel = Math.toIntExact(labelResponse.getTotal());
         List<LabelEsModel> labelList = labelResponse.getLabelList();
@@ -180,5 +189,45 @@ public class AvatarController {
         return ResponseUtil.ok(PageUtil.startPage(srcList, pageNum, pageSize));
     }
 
+    // 返回指定头像
+    @GetMapping("/wechat/avatar/{id}")
+    public Object getAvatar(@PathVariable(value = "id")Long id){
+        String src = avatarService.srcOfId(id);
+        System.out.println(src);
+        return ResponseUtil.ok(src);
+    }
+
+    // 返回指定头像的标签
+    @GetMapping("/wechat/avatar/label/{id}")
+    public Object getAvatarLabel(@PathVariable(value = "id")Long id){
+        List<Long> labelIdList = labelService.labelOfAvatar(id);
+        List<String> labels = new ArrayList<String>();
+        int length = labelIdList.size();
+        for (int i = 0; i < length; i++){
+            String label = labelOfAvatarService.valueOfId(labelIdList.get(i));
+            labels.add(label);
+        }
+        return ResponseUtil.ok(labels);
+    }
+
+    // 返回指定分类下的头像
+    @GetMapping("/wechat/avatar/category/{id}/{pageNum}/{pageSize}")
+    public Object getCategoryAvatar(@PathVariable(value = "id")Long id, @PathVariable(value = "pageNum")Integer pageNum, @PathVariable(value = "pageSize")Integer pageSize){
+        List<Avatar> avatarList;
+        if (id == -1){
+            avatarList = avatarService.allAvatar();
+        } else {
+            avatarList = avatarService.avatarOfCategory(id);
+        }
+
+        if(avatarList == null){
+            System.out.println("fail");
+            return ResponseUtil.fail();
+        } else {
+            System.out.println(avatarList);
+            System.out.println("ok");
+            return ResponseUtil.ok(PageUtil.startPage(avatarList, pageNum, pageSize));
+        }
+    }
 
 }

@@ -39,4 +39,9 @@
     from avatar
     where src = #{src, jdbcType=VARCHAR}
   </select>
+  <select id="selectByCategory" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select id, src
+    from avatar
+    where category = #{id, jdbcType=BIGINT}
+  </select>
 </mapper>

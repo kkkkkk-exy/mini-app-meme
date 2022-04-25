@@ -13,10 +13,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.kkkkkk.miniappmeme.entity.Meme">
-    insert into meme (src, time,
-      count_download, category)
-    values (#{id,jdbcType=BIGINT}, #{src,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
-      #{countDownload,jdbcType=INTEGER}, #{category, jdbcType=BIGINT})
+    insert into meme (src, time, category)
+    values (#{src,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{category, jdbcType=BIGINT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.kkkkkk.miniappmeme.entity.Meme">
     update meme
@@ -31,7 +29,17 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, src, time, count_download, category
+    select id, src
     from meme
+  </select>
+  <select id="selectBySrc" parameterType="java.lang.String" resultType="java.lang.Long">
+    select id
+    from meme
+    where src = #{src, jdbcType=VARCHAR}
+  </select>
+  <select id="selectSrcById" parameterType="java.lang.Long" resultType="java.lang.String">
+    select src
+    from meme
+    where id = #{id, jdbcType=BIGINT}
   </select>
 </mapper>

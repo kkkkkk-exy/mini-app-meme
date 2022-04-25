@@ -36,4 +36,9 @@ public class AvatarServiceImpl implements AvatarService {
     public String srcOfId(Long id){
         return avatarMapper.selectByPrimaryKey(id).getSrc();
     }
+
+    @Override
+    public List<Avatar> avatarOfCategory(Long id){
+        return avatarMapper.selectByCategory(id);
+    }
 }

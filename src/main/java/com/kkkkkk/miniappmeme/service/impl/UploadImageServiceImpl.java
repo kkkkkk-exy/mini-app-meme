@@ -55,6 +55,7 @@ public class UploadImageServiceImpl implements UploadImageService {
     @Override
     public String uploadQNImg(MultipartFile file){
         try {
+            token = auth.uploadToken(qiNiuYunConfig.getBucket());
             //获取文件名称
             String fileName = file.getOriginalFilename();
             //生成图片名称

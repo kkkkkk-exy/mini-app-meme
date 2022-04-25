@@ -12,4 +12,6 @@ public interface AvatarLabelService {
     int add(AvatarLabel avatarLabel);
 
     List<Long> avatarOfLabel(Long labelId);
+
+    List<Long> labelOfAvatar(Long avatarId);
 }

@@ -27,4 +27,9 @@ public class AvatarLabelServiceImpl implements AvatarLabelService {
     public List<Long> avatarOfLabel(Long labelId){
         return avatarLabelMapper.selectByLabelId(labelId);
     }
+
+    @Override
+    public List<Long> labelOfAvatar(Long avatarId){
+        return avatarLabelMapper.selectByAvatarId(avatarId);
+    }
 }

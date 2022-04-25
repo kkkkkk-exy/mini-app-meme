@@ -14,32 +14,22 @@
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.kkkkkk.miniappmeme.entity" targetProject="./src/main/java">
+        <javaModelGenerator targetPackage="com.jennie.hduquestion.entity" targetProject="./src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <sqlMapGenerator targetPackage="mapping" targetProject="./src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.kkkkkk.miniappmeme.mapper" targetProject="./src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jennie.hduquestion.mapper" targetProject="./src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-        <table tableName="avatar"></table>
-        <table tableName="category_avatar"></table>
-        <table tableName="carousel"></table>
-        <table tableName="meme"></table>
-        <table tableName="sentence"></table>
-        <table tableName="wallpaper"></table>
-        <table tableName="avatar_label"></table>
-        <table tableName="meme_label"></table>
-        <table tableName="sentence_label"></table>
-        <table tableName="wallpaper_label"></table>
-        <table tableName="category_meme"></table>
-        <table tableName="category_sentence"></table>
-        <table tableName="category_wallpaper"></table>
-        <table tableName="label_of_avatar"></table>
-        <table tableName="label_of_meme"></table>
-        <table tableName="label_of_sentence"></table>
-        <table tableName="label_of_wallpaper"></table>
+        <table tableName="fill_question"></table>
+        <table tableName="judge_question"></table>
+        <table tableName="multiply_question"></table>
+        <table tableName="paper"></table>
+        <table tableName="paper_question"></table>
+        <table tableName="question_set"></table>
+        <table tableName="user"></table>
     </context>
 </generatorConfiguration>

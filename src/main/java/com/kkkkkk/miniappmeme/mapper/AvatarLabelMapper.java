@@ -14,4 +14,6 @@ public interface AvatarLabelMapper {
     List<AvatarLabel> selectAll();
 
     List<Long> selectByLabelId(Long LabelId);
+
+    List<Long> selectByAvatarId(Long avatarId);
 }

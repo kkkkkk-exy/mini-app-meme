@@ -32,4 +32,9 @@ public class LabelServiceImpl implements LabelService {
     public LabelOfAvatar labelOfValue(String value){
         return labelMapper.selectByValue(value);
     }
+
+    @Override
+    public String valueOfId(Long id){
+        return labelMapper.selectByPrimaryKey(id);
+    }
 }

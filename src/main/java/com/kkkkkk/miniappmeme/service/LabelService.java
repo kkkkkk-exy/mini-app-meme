@@ -14,4 +14,6 @@ public interface LabelService {
     int addLabel(String value);
 
     LabelOfAvatar labelOfValue(String value);
+
+    String valueOfId(Long id);
 }

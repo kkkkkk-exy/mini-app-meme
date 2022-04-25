@@ -17,4 +17,6 @@ public interface AvatarMapper {
     int updateByPrimaryKey(Avatar record);
 
     Long selectBySrc(String src);
+
+    List<Avatar> selectByCategory(Long id);
 }

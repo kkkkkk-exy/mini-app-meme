@@ -17,4 +17,6 @@ public interface AvatarService {
     Long avatarOfSrc(String src);
 
     String srcOfId(Long id);
+
+    List<Avatar> avatarOfCategory(Long id);
 }

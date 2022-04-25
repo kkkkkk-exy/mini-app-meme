@@ -18,8 +18,8 @@
     set value = #{value,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, value
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="java.lang.String">
+    select value
     from label_of_avatar
     where id = #{id,jdbcType=BIGINT}
   </select>
