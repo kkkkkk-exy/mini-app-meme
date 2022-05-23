@@ -39,9 +39,9 @@ import static com.kkkkkk.miniappmeme.util.WxResponseCode.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private String appId = "wx01b8a94f04968753";
+    private String appId = "";
 
-    private String appSecret = "6691bb7e999f82d26e65275a113361ab";
+    private String appSecret = "";
 
     private final Log logger = LogFactory.getLog(AuthController.class);
 
